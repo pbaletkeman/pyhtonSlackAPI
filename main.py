@@ -22,8 +22,11 @@ user_id = None
 # Check the response
 if response.status_code == 200:
     print('Request successful!')
-    user_id = (response.json()['user']['id'])
     print(response.json())
+    if not response.json()['ok']:
+        print('problem., please check auth header')
+    else:
+        user_id = (response.json()['user']['id'])
 else:
     print('Request failed!')
     print(response.text)
